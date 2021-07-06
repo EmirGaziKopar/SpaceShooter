@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 /*Game Manager'a heryerden ulaþmak istediðimiz için namespace vermiyoruz*/
 public class GameManager : MonoBehaviour
 {
@@ -16,7 +17,7 @@ public class GameManager : MonoBehaviour
     {
         if (Instance == null)
         {
-            Instance = this; // Instance diye bir propery var ve biz ona bu class'ý referance veriyoruz. Bu class'ýn referancesini instance'ye atýyorum 
+            Instance = this; // Instance diye bir propery var ve biz ona bu class'ý referance veriyoruz. Bu class'ýn referancesini instance'ye atýyorum yani artýk null deðil 
             DontDestroyOnLoad(this.gameObject); //GameManager'ýn içinde olduðu gameobject'i yok etme demiþ olduk. 
 
         }
@@ -27,6 +28,19 @@ public class GameManager : MonoBehaviour
 
         }
     }
+
+
+    public void RestartGame()
+    {
+        StartCoroutine(RestartGameAsync());
+    }
+
+
+    private IEnumerator RestartGameAsync()
+    {
+        yield return SceneManager.LoadSceneAsync("GameMain"); //yield return - > Bu method bittikten sonra çalýþmaya devam edecek. 
+    }
+
 
     
 }

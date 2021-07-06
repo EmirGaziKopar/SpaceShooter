@@ -1,3 +1,4 @@
+using SpaceShooter.Movements;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,25 +11,14 @@ namespace SpaceShooter.Controllers // Heryerden eriþilmesini engeller
     public class PlayerController : MonoBehaviour
     {
 
-        [SerializeField] float forceCoefficient = 300f;
+        Jump jump;
+        PcInput pcInput;
 
-        public float JumpForce {
-            get
-            {
-                return forceCoefficient;
-            }
-            set
-            {
-                if (value > 0 || value < 1000f)
-                {
-                    forceCoefficient = value;
-                }
-                else
-                {
-                    //Hata mesajý gönder
-                }
-            }
-        }
+
+        bool isleftMouseClicked;
+        
+
+        
        
 
         Rigidbody2D _rigidbody2D; // This is a private field , fields can be accessed from anywhere in the class
@@ -37,6 +27,10 @@ namespace SpaceShooter.Controllers // Heryerden eriþilmesini engeller
         private void Awake()
         {
             _rigidbody2D = GetComponent<Rigidbody2D>(); // Ýçinde bulunduðu nesneye referans vermesini saðlar
+            jump = GetComponent<Jump>();
+
+            pcInput = new PcInput();
+
 
         }
         // Start is called before the first frame update
@@ -45,16 +39,42 @@ namespace SpaceShooter.Controllers // Heryerden eriþilmesini engeller
 
         }
 
-
-        private void Update()
+        void Update()
         {
-            if (Input.GetMouseButtonDown(0))
-            { //0 -> left click of mouse 1-> rigth click of mouse 2-> Mid
-
-                _rigidbody2D.AddForce(Vector2.up * forceCoefficient);
-
-                /* up = x=0 y=1 but that's not enought therefore we create a coefficient and multiply with it, and this determines the value of our force.  */
+            if (pcInput.leftClick)
+            {
+                isleftMouseClicked = true;
             }
+        }
+
+        private void FixedUpdate()
+        {
+            if(isleftMouseClicked)
+            {
+
+                jump.jumpAction(_rigidbody2D); // Jump sýnýfýndan oluþturduðumuz referans deðer sayesinde ve içeriðe ulaþmak için oluþturduðumuz  getComponent sayesinde methodu kullandýk.
+
+                isleftMouseClicked = false;
+
+            }
+            
+        }
+
+
+        private void OnCollisionEnter2D(Collision2D collision)
+        {
+            /*
+             Bu kod çalýþmadý 
+            if (collision.gameObject.tag == "Planet")
+            {
+                GameManager.Instance.RestartGame();
+            }
+              
+
+             */
+
+            GameManager.Instance.RestartGame();
+            
         }
     }
 }
