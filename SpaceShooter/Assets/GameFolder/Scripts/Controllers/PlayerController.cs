@@ -6,49 +6,50 @@ using UnityEngine;
 
 namespace SpaceShooter.Controllers // Heryerden eriþilmesini engeller 
 {
-    
 
+    
     public class PlayerController : MonoBehaviour
     {
-
         Jump jump;
         PcInput pcInput;
 
-
         bool isleftMouseClicked;
+        bool isrightMouseClicked;
         
-
-        
-       
-
         Rigidbody2D _rigidbody2D; // This is a private field , fields can be accessed from anywhere in the class
 
         //Awaket run Before Start -> Awake OnEnable Reset Start FixedUpdate 
         private void Awake()
         {
             _rigidbody2D = GetComponent<Rigidbody2D>(); // Ýçinde bulunduðu nesneye referans vermesini saðlar
+            
             jump = GetComponent<Jump>();
 
             pcInput = new PcInput();
 
 
         }
-        // Start is called before the first frame update
-        void Start()
-        {
-
-        }
-
+        
         void Update()
         {
             if (pcInput.leftClick)
             {
                 isleftMouseClicked = true;
             }
+
+            if(pcInput.rightClick)
+            {
+                isrightMouseClicked = true;
+            }
+
+            
         }
 
         private void FixedUpdate()
         {
+            
+
+
             if(isleftMouseClicked)
             {
 
@@ -56,6 +57,10 @@ namespace SpaceShooter.Controllers // Heryerden eriþilmesini engeller
 
                 isleftMouseClicked = false;
 
+            }
+            if (isrightMouseClicked)
+            {
+                //ateþleme sistemi koy 
             }
             
         }
@@ -73,7 +78,12 @@ namespace SpaceShooter.Controllers // Heryerden eriþilmesini engeller
 
              */
 
-            GameManager.Instance.RestartGame();
+            
+            
+            
+                GameManager.Instance.RestartGame();
+            
+            
             
         }
     }
