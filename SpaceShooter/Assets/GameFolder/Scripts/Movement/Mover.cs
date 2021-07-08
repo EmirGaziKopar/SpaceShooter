@@ -1,3 +1,4 @@
+using SpaceShooter.Enum;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,6 +12,7 @@ namespace SpaceShooter.Movements
 
     public class Mover : MonoBehaviour
     {
+        [SerializeField] Enum1 enum1;
         [SerializeField] float moveSpeed = 5f;
         Rigidbody2D _rigidbody2D;
 
@@ -22,7 +24,16 @@ namespace SpaceShooter.Movements
 
         private void Start()
         {
-            _rigidbody2D.velocity = Vector2.left * moveSpeed; //x=-1 y=0
+            if(enum1 == Enum1.Left)
+            {
+                _rigidbody2D.velocity = Vector2.left * moveSpeed; //x=-1 y=0
+            }
+            else if(enum1 == Enum1.Right)
+            {
+                _rigidbody2D.velocity = Vector2.right * moveSpeed; //x=-1 y=0
+            }
+
+            
         }
 
     }

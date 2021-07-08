@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace SpaceShooter.Controllers
 {
-    public class PcInput : MonoBehaviour
+    public class PcInput 
     {
         public bool leftClick => Input.GetMouseButtonDown(0);
 

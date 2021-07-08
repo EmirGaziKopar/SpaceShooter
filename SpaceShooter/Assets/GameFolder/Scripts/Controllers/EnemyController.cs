@@ -6,7 +6,7 @@ namespace SpaceShooter.Controllers
 {
     public class EnemyController : MonoBehaviour
     {
-        [SerializeField] float time = 5f;
+        [SerializeField] float time = 3f;
 
 
 
