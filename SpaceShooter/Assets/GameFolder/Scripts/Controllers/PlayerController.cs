@@ -1,3 +1,4 @@
+using SpaceShooter.Combat;
 using SpaceShooter.Movements;
 using System.Collections;
 using System.Collections.Generic;
@@ -15,6 +16,7 @@ namespace SpaceShooter.Controllers // Heryerden eriþilmesini engeller
 
         bool isleftMouseClicked;
         bool isrightMouseClicked;
+        LaunchProjectile launchProjectile;
         
         Rigidbody2D _rigidbody2D; // This is a private field , fields can be accessed from anywhere in the class
 
@@ -26,6 +28,7 @@ namespace SpaceShooter.Controllers // Heryerden eriþilmesini engeller
             jump = GetComponent<Jump>();
 
             pcInput = new PcInput();
+            launchProjectile = GetComponent<LaunchProjectile>();
 
 
         }
@@ -40,6 +43,7 @@ namespace SpaceShooter.Controllers // Heryerden eriþilmesini engeller
             if(pcInput.rightClick)
             {
                 isrightMouseClicked = true;
+                launchProjectile.LaunchAction();
             }
 
             
@@ -60,7 +64,7 @@ namespace SpaceShooter.Controllers // Heryerden eriþilmesini engeller
             }
             if (isrightMouseClicked)
             {
-                //ateþleme sistemi koy 
+                
             }
             
         }

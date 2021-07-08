@@ -5,12 +5,9 @@ using UnityEngine;
 
 namespace SpaceShooter.Controllers
 {
-    public class EnemyController : LifeCycleController
+    public class ProjectileController : LifeCycleController
     {
         
-
-
-
     }
-
 }
+
