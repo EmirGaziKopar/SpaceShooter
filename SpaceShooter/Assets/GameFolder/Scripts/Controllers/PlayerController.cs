@@ -43,7 +43,7 @@ namespace SpaceShooter.Controllers // Heryerden eriþilmesini engeller
             if(pcInput.rightClick)
             {
                 isrightMouseClicked = true;
-                launchProjectile.LaunchAction();
+                
             }
 
             
@@ -64,7 +64,9 @@ namespace SpaceShooter.Controllers // Heryerden eriþilmesini engeller
             }
             if (isrightMouseClicked)
             {
-                
+                launchProjectile.LaunchAction();
+                isrightMouseClicked = false;
+
             }
             
         }

@@ -41,6 +41,7 @@ namespace SpaceShooter.Combat
                 delayFinish = false;
             }
             
+            
         }
     }
 

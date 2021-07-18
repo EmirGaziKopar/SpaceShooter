@@ -7,7 +7,18 @@ namespace SpaceShooter.Controllers
 {
     public class ProjectileController : LifeCycleController
     {
-        
+
+        private void OnTriggerEnter2D(Collider2D collision)
+        {
+            EnemyController enemy = collision.GetComponent<EnemyController>();
+            
+            if(enemy != null)
+            {
+                Destroy(enemy.gameObject);
+                Destroy(this.gameObject);
+            }
+        }
+
     }
 }
 
