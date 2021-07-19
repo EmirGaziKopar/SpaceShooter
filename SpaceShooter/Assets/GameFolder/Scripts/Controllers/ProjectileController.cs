@@ -10,12 +10,13 @@ namespace SpaceShooter.Controllers
 
         private void OnTriggerEnter2D(Collider2D collision)
         {
-            EnemyController enemy = collision.GetComponent<EnemyController>();
+            EnemyController enemy = collision.GetComponent<EnemyController>(); //EnemyController'ýn componenti olduðu nesne düþman nesnesi dolayýsýyla burada düþmanýn referans deðerini "enemy" içine almýþ olduk
             
             if(enemy != null)
             {
-                Destroy(enemy.gameObject);
-                Destroy(this.gameObject);
+                GameManager.Instance.IncreaseScore();
+                Destroy(enemy.gameObject); //Burada da merminin collisionu null deðilse yani bir þeye deðmiþ ise düþmaný yok et dedik.
+                Destroy(this.gameObject); //Burada da ayný þekilde mermiyi yok et dedik 
             }
         }
 

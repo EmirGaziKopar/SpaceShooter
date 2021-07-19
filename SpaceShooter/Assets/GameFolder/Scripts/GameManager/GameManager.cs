@@ -5,7 +5,12 @@ using UnityEngine.SceneManagement;
 /*Game Manager'a heryerden ulaþmak istediðimiz için namespace vermiyoruz*/
 public class GameManager : MonoBehaviour
 {
+    [SerializeField] int score;
+
     public static GameManager Instance { get;  private set; }
+
+
+    public event System.Action<int> OnscoreChanged; //Score'u taþýmak için event kullanýcaz
 
     private void Awake()
     {
@@ -35,6 +40,12 @@ public class GameManager : MonoBehaviour
         StartCoroutine(RestartGameAsync());
     }
 
+    public void IncreaseScore()
+    {
+        OnscoreChanged?.Invoke(score); //Event doluysa ve score almýþsa 
+        score++;
+
+    }
 
     private IEnumerator RestartGameAsync()
     {
