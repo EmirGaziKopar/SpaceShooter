@@ -33,7 +33,7 @@ public class DisplayScore : MonoBehaviour
 
     private void HandleOnScoreChanged(int score)
     {
-        textMesh.text = $"Score:{score}";
+        textMesh.text = $"Score:{score*10}";
 
 
 
